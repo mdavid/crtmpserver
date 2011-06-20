@@ -260,7 +260,9 @@
         <itemPath>../../../../sources/thelib/include/streaming/baseoutstream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/basestream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/codectypes.h</itemPath>
+        <itemPath>../../../../sources/thelib/include/streaming/innetrawstream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/nalutypes.h</itemPath>
+        <itemPath>../../../../sources/thelib/include/streaming/outnetrawstream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/packetqueue.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/streamcapabilities.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/streamsmanager.h</itemPath>
@@ -511,7 +513,9 @@
         <itemPath>../../../../sources/thelib/src/streaming/baseoutnetstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/baseoutstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/basestream.cpp</itemPath>
+        <itemPath>../../../../sources/thelib/src/streaming/innetrawstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/nalutypes.cpp</itemPath>
+        <itemPath>../../../../sources/thelib/src/streaming/outnetrawstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/packetqueue.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/streamcapabilities.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/streamsmanager.cpp</itemPath>
