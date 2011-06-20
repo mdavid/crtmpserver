@@ -50,11 +50,9 @@ public:
 			uint32_t processedLength, uint32_t totalLength,
 			double absoluteTimestamp, bool isAudio);
 	virtual void ReadyForSend();
-	virtual bool IsCompatibleWithType(uint64_t type);
 };
 
 
 #endif	/* _RTMPSTREAM_H */
-
 #endif /* HAS_PROTOCOL_RTMP */
 

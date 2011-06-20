@@ -90,7 +90,3 @@ bool OutNetRawStream::FeedData(uint8_t *pData, uint32_t dataLength,
 	return false;
 }
 
-bool OutNetRawStream::IsCompatibleWithType(uint64_t type) {
-	//This stream is compatible with everything
-	return true;
-}

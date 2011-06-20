@@ -102,21 +102,22 @@ map<uint32_t, BaseOutStream *> StreamsManager::GetWaitingSubscribers(string stre
 	//3. merge them
 	map<uint32_t, BaseOutStream *> result;
 
-	FOR_MAP(shortSubscribers, uint32_t, BaseStream *, i) {
-		if (((BaseOutStream *) MAP_VAL(i))->IsLinked())
-			continue;
-		if (!((BaseOutStream *) MAP_VAL(i))->IsCompatibleWithType(inboundStreamType))
-			continue;
-		result[MAP_KEY(i)] = (BaseOutStream *) MAP_VAL(i);
-	}
-
-	FOR_MAP(longSubscribers, uint32_t, BaseStream *, i) {
-		if (((BaseOutStream *) MAP_VAL(i))->IsLinked())
-			continue;
-		if (!((BaseOutStream *) MAP_VAL(i))->IsCompatibleWithType(inboundStreamType))
-			continue;
-		result[MAP_KEY(i)] = (BaseOutStream *) MAP_VAL(i);
-	}
+	//	FOR_MAP(shortSubscribers, uint32_t, BaseStream *, i) {
+	//		if (((BaseOutStream *) MAP_VAL(i))->IsLinked())
+	//			continue;
+	//		if (!((BaseOutStream *) MAP_VAL(i))->IsCompatibleWithType(inboundStreamType))
+	//			continue;
+	//		result[MAP_KEY(i)] = (BaseOutStream *) MAP_VAL(i);
+	//	}
+	//
+	//	FOR_MAP(longSubscribers, uint32_t, BaseStream *, i) {
+	//		if (((BaseOutStream *) MAP_VAL(i))->IsLinked())
+	//			continue;
+	//		if (!((BaseOutStream *) MAP_VAL(i))->IsCompatibleWithType(inboundStreamType))
+	//			continue;
+	//		result[MAP_KEY(i)] = (BaseOutStream *) MAP_VAL(i);
+	//	}
+	NYI;
 
 	//4. Done
 	return result;

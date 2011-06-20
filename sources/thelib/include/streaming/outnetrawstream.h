@@ -46,7 +46,6 @@ public:
 	virtual bool FeedData(uint8_t *pData, uint32_t dataLength,
 			uint32_t processedLength, uint32_t totalLength,
 			double absoluteTimestamp, bool isAudio);
-	virtual bool IsCompatibleWithType(uint64_t type);
 };
 
 #endif	/* _OUTNETRAWSTREAM_H */

@@ -50,8 +50,7 @@ void BaseOutStream::ReadyForSend() {
 }
 
 bool BaseOutStream::Link(BaseInStream *pInStream, bool reverseLink) {
-	if ((!pInStream->IsCompatibleWithType(GetType()))
-			|| (!IsCompatibleWithType(pInStream->GetType()))) {
+	if (!pInStream->IsCompatibleWithType(GetType())) {
 		FATAL("stream type %s not compatible with stream type %s",
 				STR(tagToString(GetType())),
 				STR(tagToString(pInStream->GetType())));

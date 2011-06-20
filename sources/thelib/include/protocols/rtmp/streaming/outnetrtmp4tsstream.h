@@ -40,8 +40,6 @@ public:
 			string name, uint32_t rtmpStreamId, uint32_t chunkSize);
 	virtual ~OutNetRTMP4TSStream();
 
-	virtual bool IsCompatibleWithType(uint64_t type);
-
 	virtual bool FeedData(uint8_t *pData, uint32_t dataLength,
 			uint32_t processedLength, uint32_t totalLength,
 			double absoluteTimestamp, bool isAudio);

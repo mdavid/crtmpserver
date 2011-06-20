@@ -177,12 +177,6 @@ public:
 		@brief The networking layer signaled the availability for sending data
 	*/
 	virtual void ReadyForSend() = 0;
-
-	/*!
-		@brief This is called to ensure that the linking process can be done
-		@param type - the target type to which this strem must be linked against
-	*/
-	virtual bool IsCompatibleWithType(uint64_t type) = 0;
 };
 
 #endif	/* _BASESTREAM_H */

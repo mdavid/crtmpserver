@@ -56,7 +56,6 @@ public:
 	virtual bool SignalSeek(double &absoluteTimestamp);
 	virtual bool SignalStop();
 
-	virtual bool IsCompatibleWithType(uint64_t type);
 	virtual void SignalDetachedFromInStream();
 	virtual void SignalStreamCompleted();
 

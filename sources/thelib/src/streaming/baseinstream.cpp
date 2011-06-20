@@ -61,8 +61,7 @@ void BaseInStream::GetStats(Variant &info) {
 }
 
 bool BaseInStream::Link(BaseOutStream *pOutStream, bool reverseLink) {
-	if ((!pOutStream->IsCompatibleWithType(GetType()))
-			|| (!IsCompatibleWithType(pOutStream->GetType()))) {
+	if (!IsCompatibleWithType(pOutStream->GetType())) {
 		FATAL("stream type %s not compatible with stream type %s",
 				STR(tagToString(GetType())),
 				STR(tagToString(pOutStream->GetType())));

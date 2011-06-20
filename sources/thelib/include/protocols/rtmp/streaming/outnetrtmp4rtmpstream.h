@@ -30,8 +30,6 @@ public:
 	OutNetRTMP4RTMPStream(BaseProtocol *pProtocol, StreamsManager *pStreamsManager,
 			string name, uint32_t rtmpStreamId, uint32_t chunkSize);
 	virtual ~OutNetRTMP4RTMPStream();
-
-	virtual bool IsCompatibleWithType(uint64_t type);
 };
 
 

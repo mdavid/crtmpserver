@@ -113,10 +113,6 @@ bool OutFileRTMPFLVStream::FeedData(uint8_t *pData, uint32_t dataLength,
 	return true;
 }
 
-bool OutFileRTMPFLVStream::IsCompatibleWithType(uint64_t type) {
-	return TAG_KIND_OF(type, ST_IN_NET_RTMP);
-}
-
 void OutFileRTMPFLVStream::SignalAttachedToInStream() {
 	//1. Initialize the file
 	if (!_file.Initialize(_name, FILE_OPEN_MODE_TRUNCATE)) {

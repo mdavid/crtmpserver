@@ -54,14 +54,6 @@ OutNetRTMP4TSStream::~OutNetRTMP4TSStream() {
 	delete[] _pSPSPPS;
 }
 
-bool OutNetRTMP4TSStream::IsCompatibleWithType(uint64_t type) {
-	_inboundStreamIsRTP = TAG_KIND_OF(type, ST_IN_NET_RTP);
-	_videoCodecSent = (type == ST_IN_NET_AAC);
-	return TAG_KIND_OF(type, ST_IN_NET_TS)
-			|| TAG_KIND_OF(type, ST_IN_NET_RTP)
-			|| TAG_KIND_OF(type, ST_IN_NET_AAC);
-}
-
 bool OutNetRTMP4TSStream::FeedData(uint8_t *pData, uint32_t dataLength,
 		uint32_t processedLength, uint32_t totalLength,
 		double absoluteTimestamp, bool isAudio) {

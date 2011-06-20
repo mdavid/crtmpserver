@@ -92,10 +92,6 @@ bool RTMPStream::FeedData(uint8_t *pData, uint32_t dataLength,
 	return false;
 }
 
-bool RTMPStream::IsCompatibleWithType(uint64_t type) {
-	return false;
-}
-
 void RTMPStream::ReadyForSend() {
 	ASSERT("Operation not supported");
 }

@@ -87,12 +87,6 @@ bool BaseOutNetRTPUDPStream::SignalStop() {
 	NYIR;
 }
 
-bool BaseOutNetRTPUDPStream::IsCompatibleWithType(uint64_t type) {
-	return type == ST_IN_NET_RTMP
-			|| type == ST_IN_NET_TS
-			|| type == ST_IN_NET_AAC;
-}
-
 void BaseOutNetRTPUDPStream::SignalDetachedFromInStream() {
 	_pConnectivity->SignalDetachedFromInStream();
 }
