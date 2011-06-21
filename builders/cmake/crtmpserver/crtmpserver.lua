@@ -132,12 +132,12 @@ configuration=
 					port=7654,
 					protocol="inboundRawHttpStream",
 					crossDomainFile="/tmp/crossdomain.xml"
-				},
+				},]]--
 				{
 					ip="0.0.0.0",
-					port=554,
+					port=5544,
 					protocol="inboundRtsp"
-				},]]--
+				},
 			},
 			externalStreams = 
 			{
@@ -150,12 +150,12 @@ configuration=
 				{
 					uri="rtsp://a1956.l1857055475.c18570.g.lq.akamaistream.net/D/1956/18570/v0001/reflector:55475",
 					localStreamName="test_aaa",
-				},
+				},]]--
 				{
 					uri="rtsp://0.0.0.0:2323/test.sdp",
 					localStreamName="stream-1-udp"
 				},
-				{
+				--[[{
 					uri="rtsp://stream01.qt.slamtv.true.nl/slamtv.sdp",
 					localStreamName="stream0-udp"
 				},

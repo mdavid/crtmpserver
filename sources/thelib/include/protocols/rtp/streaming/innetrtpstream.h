@@ -25,6 +25,8 @@
 #include "streaming/baseinnetstream.h"
 #include "protocols/rtp/rtpheader.h"
 
+class RTPToRTMPStreamConverter;
+
 class DLLEXP InNetRTPStream
 : public BaseInNetStream {
 private:
@@ -48,6 +50,7 @@ private:
 	double _videoNTP;
 	double _videoRTP;
 	double _lastVideoTs;
+	RTPToRTMPStreamConverter *_pStreamConverter;
 public:
 	InNetRTPStream(BaseProtocol *pProtocol, StreamsManager *pStreamsManager,
 			string name, string SPS, string PPS, string AAC);

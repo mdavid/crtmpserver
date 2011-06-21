@@ -25,6 +25,7 @@
 #include "protocols/baseprotocol.h"
 #include "protocols/rtmp/basertmpprotocol.h"
 #include "protocols/rtmp/streaming/baseoutnetrtmpstream.h"
+#include "protocols/rtp/streaming/rtptortmpstreamconverter.h"
 
 InNetRTPStream::InNetRTPStream(BaseProtocol *pProtocol,
 		StreamsManager *pStreamsManager, string name, string SPS, string PPS, string AAC)
@@ -62,9 +63,15 @@ InNetRTPStream::InNetRTPStream(BaseProtocol *pProtocol,
 	_videoNTP = 0;
 	_videoRTP = 0;
 	_lastVideoTs = 0;
+
+	_pStreamConverter = new RTPToRTMPStreamConverter(&_capabilities);
 }
 
 InNetRTPStream::~InNetRTPStream() {
+	if (_pStreamConverter != NULL) {
+		delete _pStreamConverter;
+		_pStreamConverter = NULL;
+	}
 }
 
 StreamCapabilities * InNetRTPStream::GetCapabilities() {
@@ -72,7 +79,7 @@ StreamCapabilities * InNetRTPStream::GetCapabilities() {
 }
 
 bool InNetRTPStream::IsCompatibleWithType(uint64_t type) {
-	return type == ST_OUT_NET_RTMP_4_TS;
+	return type == ST_OUT_NET_RTMP_4_RTMP;
 }
 
 void InNetRTPStream::ReadyForSend() {
@@ -179,19 +186,32 @@ bool InNetRTPStream::FeedData(uint8_t *pData, uint32_t dataLength,
 			return true;
 		}
 	}
-	pTemp = _pOutStreams;
-	while (pTemp != NULL) {
-		if (!pTemp->info->IsEnqueueForDelete()) {
-			if (!pTemp->info->FeedData(pData, dataLength, processedLength, totalLength,
-					absoluteTimestamp, isAudio)) {
-				WARN("Unable to feed OS: %p", pTemp->info);
-				pTemp->info->EnqueueForDelete();
-				if (GetProtocol() == pTemp->info->GetProtocol()) {
-					return false;
+
+	_pStreamConverter->FeedData(pData, dataLength, processedLength, totalLength,
+			absoluteTimestamp, isAudio);
+
+	IOBuffer &finalData = _pStreamConverter->GetBuffer();
+
+	if (GETAVAILABLEBYTESCOUNT(finalData) != 0) {
+		pTemp = _pOutStreams;
+		while (pTemp != NULL) {
+			if (!pTemp->info->IsEnqueueForDelete()) {
+				if (!pTemp->info->FeedData(
+						GETIBPOINTER(finalData),
+						GETAVAILABLEBYTESCOUNT(finalData),
+						0,
+						GETAVAILABLEBYTESCOUNT(finalData),
+						absoluteTimestamp,
+						isAudio)) {
+					WARN("Unable to feed OS: %p", pTemp->info);
+					pTemp->info->EnqueueForDelete();
+					if (GetProtocol() == pTemp->info->GetProtocol()) {
+						return false;
+					}
 				}
 			}
+			pTemp = pTemp->pPrev;
 		}
-		pTemp = pTemp->pPrev;
 	}
 	return true;
 }
@@ -338,10 +358,10 @@ bool InNetRTPStream::FeedAudioData(uint8_t *pData, uint32_t dataLength,
 		}
 		_audioPacketsCount++;
 		_audioBytesCount += chunkSize;
-		if (!FeedData(pData + cursor - 2,
-				chunkSize + 2,
+		if (!FeedData(pData + cursor,
+				chunkSize,
 				0,
-				chunkSize + 2,
+				chunkSize,
 				ts, true)) {
 			FATAL("Unable to feed data");
 			return false;
@@ -375,48 +395,41 @@ void InNetRTPStream::ReportSR(uint64_t ntpMicroseconds, uint32_t rtpTimestamp,
 }
 
 void InNetRTPStream::FeedVideoCodecSetup(BaseOutStream* pOutStream) {
-	if (!pOutStream->FeedData(
-			_capabilities.avc._pSPS,
-			_capabilities.avc._spsLength,
-			0,
-			_capabilities.avc._spsLength,
-			_lastVideoTs,
-			false)) {
-		FATAL("Unable to feed stream");
-		if (pOutStream->GetProtocol() != NULL) {
-			pOutStream->GetProtocol()->EnqueueForDelete();
-		}
-	}
-	if (!pOutStream->FeedData(
-			_capabilities.avc._pPPS,
-			_capabilities.avc._ppsLength,
-			0,
-			_capabilities.avc._ppsLength,
-			_lastVideoTs,
-			false)) {
-		FATAL("Unable to feed stream");
-		if (pOutStream->GetProtocol() != NULL) {
-			pOutStream->GetProtocol()->EnqueueForDelete();
+	_pStreamConverter->ComputeHeaders(false);
+	IOBuffer &finalData = _pStreamConverter->GetBuffer();
+	if (GETAVAILABLEBYTESCOUNT(finalData) != 0) {
+		if (!pOutStream->FeedData(
+				GETIBPOINTER(finalData),
+				GETAVAILABLEBYTESCOUNT(finalData),
+				0,
+				GETAVAILABLEBYTESCOUNT(finalData),
+				_lastVideoTs,
+				false)) {
+			FATAL("Unable to feed stream");
+			if (pOutStream->GetProtocol() != NULL) {
+				pOutStream->GetProtocol()->EnqueueForDelete();
+			}
 		}
 	}
 }
 
 void InNetRTPStream::FeedAudioCodecSetup(BaseOutStream* pOutStream) {
-	uint8_t *pTemp = new uint8_t[_capabilities.aac._aacLength + 2];
-	memcpy(pTemp + 2, _capabilities.aac._pAAC, _capabilities.aac._aacLength);
-	if (!pOutStream->FeedData(
-			pTemp + 2,
-			_capabilities.aac._aacLength,
-			0,
-			_capabilities.aac._aacLength,
-			_lastAudioTs,
-			true)) {
-		FATAL("Unable to feed stream");
-		if (pOutStream->GetProtocol() != NULL) {
-			pOutStream->GetProtocol()->EnqueueForDelete();
+	_pStreamConverter->ComputeHeaders(true);
+	IOBuffer &finalData = _pStreamConverter->GetBuffer();
+	if (GETAVAILABLEBYTESCOUNT(finalData) != 0) {
+		if (!pOutStream->FeedData(
+				GETIBPOINTER(finalData),
+				GETAVAILABLEBYTESCOUNT(finalData),
+				0,
+				GETAVAILABLEBYTESCOUNT(finalData),
+				_lastVideoTs,
+				true)) {
+			FATAL("Unable to feed stream");
+			if (pOutStream->GetProtocol() != NULL) {
+				pOutStream->GetProtocol()->EnqueueForDelete();
+			}
 		}
 	}
-	delete[] pTemp;
 }
 
 #endif /* HAS_PROTOCOL_RTP */

@@ -87,11 +87,11 @@ BaseOutNetRTMPStream *BaseOutNetRTMPStream::GetInstance(BaseProtocol *pProtocol,
 			|| TAG_KIND_OF(inStreamType, ST_IN_NET_LIVEFLV)
 			|| TAG_KIND_OF(inStreamType, ST_IN_FILE_RTMP)
 			|| TAG_KIND_OF(inStreamType, ST_IN_NET_MP3)
+			|| TAG_KIND_OF(inStreamType, ST_IN_NET_RTP)
 			) {
 		pResult = new OutNetRTMP4RTMPStream(pProtocol, pStreamsManager, name,
 				rtmpStreamId, chunkSize);
 	} else if (TAG_KIND_OF(inStreamType, ST_IN_NET_TS)
-			|| TAG_KIND_OF(inStreamType, ST_IN_NET_RTP)
 			|| TAG_KIND_OF(inStreamType, ST_IN_NET_AAC)) {
 		pResult = new OutNetRTMP4TSStream(pProtocol, pStreamsManager, name,
 				rtmpStreamId, chunkSize);

@@ -305,9 +305,9 @@ bool Header::Write(IOBuffer &buffer) {
 }
 
 Header::operator string() {
-	//	return format("(RC: %u; HT: %u; CI: %02u; T: % 9u; L: % 6u; MT: % 2u; SI: % 2u; IA: %u)",
-	//			readCompleted, ht, ci, hf.s.ts, hf.s.ml, hf.s.mt, hf.s.si, isAbsolute);
-	return "not yet implemented";
+	return format("(RC: %u; HT: %u; CI: %02u; T: % 9u; L: % 6u; MT: % 2u; SI: % 2u; IA: %u)",
+			readCompleted, ht, ci, hf.s.ts, hf.s.ml, hf.s.mt, hf.s.si, isAbsolute);
+	//return "not yet implemented";
 }
 
 #endif /* LITTLE_ENDIAN_BYTE_ALIGNED */
