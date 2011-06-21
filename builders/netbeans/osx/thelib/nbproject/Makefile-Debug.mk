@@ -95,6 +95,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/554535297/udpcarrier.o \
 	${OBJECTDIR}/_ext/1636055853/baseoutstream.o \
 	${OBJECTDIR}/_ext/1826042562/basevariantappprotocolhandler.o \
+	${OBJECTDIR}/_ext/1636055853/basestreamconverter.o \
 	${OBJECTDIR}/_ext/1210522057/ignoredatom.o \
 	${OBJECTDIR}/_ext/1625581042/inboundrtmfpprotocol.o \
 	${OBJECTDIR}/_ext/1054419429/inboundconnectivity.o \
@@ -149,6 +150,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/501751224/amf0serializer.o \
 	${OBJECTDIR}/_ext/1919749812/protocolmanager.o \
 	${OBJECTDIR}/_ext/1124564181/sdp.o \
+	${OBJECTDIR}/_ext/1215912322/rtptortmpstreamconverter.o \
 	${OBJECTDIR}/_ext/1210522057/atomvmhd.o \
 	${OBJECTDIR}/_ext/1773553217/inboundliveflvprotocol.o \
 	${OBJECTDIR}/_ext/1919749812/defaultprotocolfactory.o \
@@ -542,6 +544,11 @@ ${OBJECTDIR}/_ext/1826042562/basevariantappprotocolhandler.o: ../../../../source
 	${RM} $@.d
 	$(COMPILE.cc) -g -DOSX -DNET_KQUEUE -DLITTLE_ENDIAN_BYTE_ALIGNED -DHAS_PROTOCOL_RTMP -DHAS_PROTOCOL_HTTP -DHAS_PROTOCOL_TS -DHAS_PROTOCOL_RTP -DHAS_PROTOCOL_VAR -DHAS_PROTOCOL_LIVEFLV -DHAS_MEDIA_MP4 -DHAS_MEDIA_MP3 -DHAS_MEDIA_FLV -DHAS_MEDIA_MKV -DCreateRTCPPacket=CreateRTCPPacket_none -DFeedDataAudioMPEG4Generic=FeedDataAudioMPEG4Generic_one_by_one -DHAS_MEDIA_MKV -DHAS_PROTOCOL_CLI -DHAS_PROTOCOL_RTMFP -DHAS_MEDIA_NSV -DHAS_PROTOCOL_MMS -I/opt/local/include -I../../../../sources/common/include -I../../../../sources/thelib/include -I../../../../../ffmpeg_bin/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/1826042562/basevariantappprotocolhandler.o ../../../../sources/thelib/src/protocols/variant/basevariantappprotocolhandler.cpp
 
+${OBJECTDIR}/_ext/1636055853/basestreamconverter.o: ../../../../sources/thelib/src/streaming/basestreamconverter.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1636055853
+	${RM} $@.d
+	$(COMPILE.cc) -g -DOSX -DNET_KQUEUE -DLITTLE_ENDIAN_BYTE_ALIGNED -DHAS_PROTOCOL_RTMP -DHAS_PROTOCOL_HTTP -DHAS_PROTOCOL_TS -DHAS_PROTOCOL_RTP -DHAS_PROTOCOL_VAR -DHAS_PROTOCOL_LIVEFLV -DHAS_MEDIA_MP4 -DHAS_MEDIA_MP3 -DHAS_MEDIA_FLV -DHAS_MEDIA_MKV -DCreateRTCPPacket=CreateRTCPPacket_none -DFeedDataAudioMPEG4Generic=FeedDataAudioMPEG4Generic_one_by_one -DHAS_MEDIA_MKV -DHAS_PROTOCOL_CLI -DHAS_PROTOCOL_RTMFP -DHAS_MEDIA_NSV -DHAS_PROTOCOL_MMS -I/opt/local/include -I../../../../sources/common/include -I../../../../sources/thelib/include -I../../../../../ffmpeg_bin/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/1636055853/basestreamconverter.o ../../../../sources/thelib/src/streaming/basestreamconverter.cpp
+
 ${OBJECTDIR}/_ext/1210522057/ignoredatom.o: ../../../../sources/thelib/src/mediaformats/mp4/ignoredatom.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1210522057
 	${RM} $@.d
@@ -811,6 +818,11 @@ ${OBJECTDIR}/_ext/1124564181/sdp.o: ../../../../sources/thelib/src/protocols/rtp
 	${MKDIR} -p ${OBJECTDIR}/_ext/1124564181
 	${RM} $@.d
 	$(COMPILE.cc) -g -DOSX -DNET_KQUEUE -DLITTLE_ENDIAN_BYTE_ALIGNED -DHAS_PROTOCOL_RTMP -DHAS_PROTOCOL_HTTP -DHAS_PROTOCOL_TS -DHAS_PROTOCOL_RTP -DHAS_PROTOCOL_VAR -DHAS_PROTOCOL_LIVEFLV -DHAS_MEDIA_MP4 -DHAS_MEDIA_MP3 -DHAS_MEDIA_FLV -DHAS_MEDIA_MKV -DCreateRTCPPacket=CreateRTCPPacket_none -DFeedDataAudioMPEG4Generic=FeedDataAudioMPEG4Generic_one_by_one -DHAS_MEDIA_MKV -DHAS_PROTOCOL_CLI -DHAS_PROTOCOL_RTMFP -DHAS_MEDIA_NSV -DHAS_PROTOCOL_MMS -I/opt/local/include -I../../../../sources/common/include -I../../../../sources/thelib/include -I../../../../../ffmpeg_bin/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/1124564181/sdp.o ../../../../sources/thelib/src/protocols/rtp/sdp.cpp
+
+${OBJECTDIR}/_ext/1215912322/rtptortmpstreamconverter.o: ../../../../sources/thelib/src/protocols/rtp/streaming/rtptortmpstreamconverter.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/1215912322
+	${RM} $@.d
+	$(COMPILE.cc) -g -DOSX -DNET_KQUEUE -DLITTLE_ENDIAN_BYTE_ALIGNED -DHAS_PROTOCOL_RTMP -DHAS_PROTOCOL_HTTP -DHAS_PROTOCOL_TS -DHAS_PROTOCOL_RTP -DHAS_PROTOCOL_VAR -DHAS_PROTOCOL_LIVEFLV -DHAS_MEDIA_MP4 -DHAS_MEDIA_MP3 -DHAS_MEDIA_FLV -DHAS_MEDIA_MKV -DCreateRTCPPacket=CreateRTCPPacket_none -DFeedDataAudioMPEG4Generic=FeedDataAudioMPEG4Generic_one_by_one -DHAS_MEDIA_MKV -DHAS_PROTOCOL_CLI -DHAS_PROTOCOL_RTMFP -DHAS_MEDIA_NSV -DHAS_PROTOCOL_MMS -I/opt/local/include -I../../../../sources/common/include -I../../../../sources/thelib/include -I../../../../../ffmpeg_bin/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/1215912322/rtptortmpstreamconverter.o ../../../../sources/thelib/src/protocols/rtp/streaming/rtptortmpstreamconverter.cpp
 
 ${OBJECTDIR}/_ext/1210522057/atomvmhd.o: ../../../../sources/thelib/src/mediaformats/mp4/atomvmhd.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1210522057

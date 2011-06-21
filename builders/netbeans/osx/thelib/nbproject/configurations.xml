@@ -208,6 +208,7 @@
             <itemPath>../../../../sources/thelib/include/protocols/rtp/streaming/baseoutnetrtpudpstream.h</itemPath>
             <itemPath>../../../../sources/thelib/include/protocols/rtp/streaming/innetrtpstream.h</itemPath>
             <itemPath>../../../../sources/thelib/include/protocols/rtp/streaming/outnetrtpudph264stream.h</itemPath>
+            <itemPath>../../../../sources/thelib/include/protocols/rtp/streaming/rtptortmpstreamconverter.h</itemPath>
           </logicalFolder>
           <itemPath>../../../../sources/thelib/include/protocols/rtp/basertpappprotocolhandler.h</itemPath>
           <itemPath>../../../../sources/thelib/include/protocols/rtp/basertspappprotocolhandler.h</itemPath>
@@ -259,6 +260,7 @@
         <itemPath>../../../../sources/thelib/include/streaming/baseoutnetstream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/baseoutstream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/basestream.h</itemPath>
+        <itemPath>../../../../sources/thelib/include/streaming/basestreamconverter.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/codectypes.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/innetrawstream.h</itemPath>
         <itemPath>../../../../sources/thelib/include/streaming/nalutypes.h</itemPath>
@@ -466,6 +468,7 @@
             <itemPath>../../../../sources/thelib/src/protocols/rtp/streaming/baseoutnetrtpudpstream.cpp</itemPath>
             <itemPath>../../../../sources/thelib/src/protocols/rtp/streaming/innetrtpstream.cpp</itemPath>
             <itemPath>../../../../sources/thelib/src/protocols/rtp/streaming/outnetrtpudph264stream.cpp</itemPath>
+            <itemPath>../../../../sources/thelib/src/protocols/rtp/streaming/rtptortmpstreamconverter.cpp</itemPath>
           </logicalFolder>
           <itemPath>../../../../sources/thelib/src/protocols/rtp/basertpappprotocolhandler.cpp</itemPath>
           <itemPath>../../../../sources/thelib/src/protocols/rtp/basertspappprotocolhandler.cpp</itemPath>
@@ -513,6 +516,7 @@
         <itemPath>../../../../sources/thelib/src/streaming/baseoutnetstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/baseoutstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/basestream.cpp</itemPath>
+        <itemPath>../../../../sources/thelib/src/streaming/basestreamconverter.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/innetrawstream.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/nalutypes.cpp</itemPath>
         <itemPath>../../../../sources/thelib/src/streaming/outnetrawstream.cpp</itemPath>
