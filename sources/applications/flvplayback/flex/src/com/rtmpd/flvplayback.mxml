@@ -82,12 +82,12 @@
 					Alert.show("Please select a flv first");
 					return;
 				}
-				InitializeVideo(streamName.text);
+				InitializeVideo(streamName.text,Number(bufferLength.text));
 			}
 			
-			private function InitializeVideo(streamName:String):void
+			private function InitializeVideo(streamName:String, bufferLength:Number):void
 			{
-				video.PlayStream(_connection,streamName);				
+				video.PlayStream(_connection,streamName, bufferLength);				
 			}
 			
 			[Bindable(event="VideoDisplayTitleChanged")]
@@ -150,7 +150,7 @@
 				}
 				if((dgFlvs.selectedIndex+1)<_availableFlvs.length){
 					dgFlvs.selectedIndex++;
-					InitializeVideo(_availableFlvs[dgFlvs.selectedIndex].flvName);
+					InitializeVideo(_availableFlvs[dgFlvs.selectedIndex].flvName,Number(bufferLength.text));
 					video.SeekTo(5);
 				}
 			}
@@ -176,6 +176,7 @@
 					</mx:columns>
 				</mx:DataGrid>
 			</mx:Panel>
+			<mx:TextInput id="bufferLength" backgroundColor="#404040" width="100%" text="0"/>
 			<mx:TextInput id="streamName" backgroundColor="#404040" width="100%" text="{_availableFlvs[dgFlvs.selectedIndex].flvName}"/>
 			<mx:Label text="Connecting string"/>
 			<mx:TextInput id="connectingString" text="rtmp://127.0.0.1/flvplayback" backgroundColor="#404040" width="100%"/>
