@@ -1,0 +1,3 @@
+#!/bin/bash
+#cmake -DCMAKE_CXX_FLAGS="-Wno-unused-but-set-variable" -DCRTMPSERVER_INSTALL_PREFIX=/usr/local .
+pushd builders/cmake && sh cleanup.sh && cmake -DCRTMPSERVER_INSTALL_PREFIX=/usr/local . && make && sudo make install
